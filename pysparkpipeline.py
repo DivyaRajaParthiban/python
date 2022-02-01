@@ -42,7 +42,7 @@ def display_data(processed_df):
 def store_data(processed_df):
     # spark dataframe action
     print("step5: Storing the results in output")
-    processed_df.coalesce(1).write.mode("overwrite").json("gs://com-inceptez-codebase/emp_output")
+    processed_df.coalesce(1).write.mode("overwrite").json("gs://divyavishnubhushanbucket1/emp_output")
     #processed_df.write.format("bigquery").option("temporaryGcsBucket","gs://com-inceptez-codebase").save("dataset1.emptable")
 
 def main():
@@ -50,7 +50,7 @@ def main():
     .getOrCreate()
     spark.sparkContext.setLogLevel("ERROR")
     spark.conf.set("spark.sql.shuffle.partitions", "10")
-    structempdf = read_data(spark, "gs://com-inceptez-codebase/employee.csv")
+    structempdf = read_data(spark, "gs://divyavishnubhushanbucket1/employee.csv")
     structempdf.printSchema()
     filtered_emp = filter_data(structempdf)
     salary_average = process_data(filtered_emp)
